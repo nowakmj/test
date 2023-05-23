@@ -42,6 +42,14 @@
                 <source>title.notice_details</source>
                 <target>Szczegóły ogłoszenia #%id%</target>
             </trans-unit>
+            <trans-unit id="title.category_list">
+                <source>title.category_list</source>
+                <target>Lista kategorii</target>
+            </trans-unit>
+            <trans-unit id="title.category_">
+                <source>title.category_details</source>
+                <target>Szczegóły kategorii #%id%</target>
+            </trans-unit>
             <trans-unit id="action.show">
                 <source>action.show</source>
                 <target>Zobacz</target>
