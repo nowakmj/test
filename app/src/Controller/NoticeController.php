@@ -6,8 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Notice;
-use App\Repository\NoticeRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\NoticeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,21 +19,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoticeController extends AbstractController
 {
     /**
+     * Notice service.
+     */
+    private NoticeService $noticeService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(NoticeService $noticeService)
+    {
+        $this->noticeService = $noticeService;
+    }
+
+    /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param NoticeRepository     $noticeRepository Notice repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
     #[Route(name: 'notice_index', methods: 'GET')]
-    public function index(Request $request, NoticeRepository $noticeRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $noticeRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            NoticeRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->noticeService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render('notice/index.html.twig', ['pagination' => $pagination]);
@@ -43,7 +51,7 @@ class NoticeController extends AbstractController
     /**
      * Show action.
      *
-     * @param Notice $notice Notice entity
+     * @param Notice $notice Notice
      *
      * @return Response HTTP response
      */
@@ -51,13 +59,10 @@ class NoticeController extends AbstractController
         '/{id}',
         name: 'notice_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET',
+        methods: 'GET'
     )]
     public function show(Notice $notice): Response
     {
-        return $this->render(
-            'notice/show.html.twig',
-            ['notice' => $notice]
-        );
+        return $this->render('notice/show.html.twig', ['notice' => $notice]);
     }
 }
