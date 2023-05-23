@@ -1,0 +1,24 @@
+p {
+    color: blue;
+}
+
+a:hover {
+    color:#8458B3;
+}
+
+body{
+    background-color: #d0bdf4;
+}
+
+a{
+    color:darkblue;
+}
+
+h1
+{
+    color:darkblue;
+}
+
+th {
+    color: darkblue;
+}
