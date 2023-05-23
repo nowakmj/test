@@ -15,8 +15,8 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'notice.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'notice.content') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'notice.email') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'notice.title') }}</th>
-
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -24,10 +24,11 @@
             {% for notice in pagination.items %}
                 <tr>
                     <td>{{ notice.id }}</td>
-                    <td>{{ notice.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ notice.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ notice.createdAt|format_date('long') }}</td>
+                    <td>{{ notice.updatedAt|format_date('long') }}</td>
                     <td>{{ notice.content }}</td>
                     <td>{{ notice.email }}</td>
+                    <td>{{ notice.category.title }}</td>
                     <td>{{ notice.title }}</td>
                     <td>
                         <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">

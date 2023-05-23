@@ -30,6 +30,10 @@
                 <source>label.content</source>
                 <target>Content</target>
             </trans-unit>
+            <trans-unit id="label.category">
+                <source>label.category</source>
+                <target>Category</target>
+            </trans-unit>
             <trans-unit id="title.notice_list">
                 <source>title.notice_list</source>
                 <target>Notice list</target>

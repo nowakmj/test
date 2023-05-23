@@ -48,11 +48,16 @@ class NoticeRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return QueryBuilder Query builder
+     * @return \Doctrine\ORM\QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial notice.{id, createdAt, updatedAt, title, content, email}',
+                'partial category.{id, title}'
+            )
+            ->join('notice.category', 'category')
             ->orderBy('notice.updatedAt', 'DESC');
     }
 

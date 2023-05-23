@@ -30,6 +30,10 @@
                 <source>label.content</source>
                 <target>Zawartość</target>
             </trans-unit>
+            <trans-unit id="label.category">
+                <source>label.category</source>
+                <target>Kategoria</target>
+            </trans-unit>
             <trans-unit id="title.notice_list">
                 <source>title.notice_list</source>
                 <target>Lista ogłoszeń</target>

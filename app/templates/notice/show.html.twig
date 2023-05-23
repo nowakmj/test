@@ -11,9 +11,11 @@
             <dt>{{ 'label.id'|trans }}</dt>
             <dd>{{ notice.id }}</dd>
             <dt>{{ 'label.created_at'|trans }}</dt>
-            <dd>{{ notice.createdAt|date('Y/m/d') }}</dd>
+            <dd>{{ notice.createdAt|format_date('long') }}</dd>
             <dt>{{ 'label.updated_at'|trans }}</dt>
-            <dd>{{ notice.updatedAt|date('Y/m/d') }}</dd>
+            <dd>{{ notice.updatedAt|format_date('long') }}</dd>
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{  notice.category.title }}</dd>
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  notice.title }}</dd>
             <dt>{{ 'label.email'|trans }}</dt>
