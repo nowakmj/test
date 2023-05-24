@@ -6,7 +6,11 @@
 namespace App\Service;
 
 use App\Entity\Category;
+use App\Entity\Notice;
 use App\Repository\CategoryRepository;
+use App\Repository\NoticeRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -24,6 +28,7 @@ class CategoryService implements CategoryServiceInterface
      * Paginator.
      */
     private PaginatorInterface $paginator;
+    private NoticeRepository $noticeRepository;
 
     /**
      * Constructor.
@@ -31,10 +36,11 @@ class CategoryService implements CategoryServiceInterface
      * @param CategoryRepository     $categoryRepository Category repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator)
+    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, NoticeRepository $noticeRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
+        $this->noticeRepository = $noticeRepository;
     }
 
     /**
@@ -60,5 +66,39 @@ class CategoryService implements CategoryServiceInterface
     public function save(Category $category): void
     {
         $this->categoryRepository->save($category);
+    }
+    /**
+     * Delete entity.
+     *
+     * @param Category $category Category entity
+     */
+    public function delete(Category $category): void
+    {
+        $this->categoryRepository->delete($category);
+    }
+
+    /**
+     * Can Category be deleted?
+     *
+     * @param Category $category Category entity
+     *
+     * @return bool Result
+     */
+    /**
+     * Can Category be deleted?
+     *
+     * @param Category $category Category entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Category $category): bool
+    {
+        try {
+            $result = $this->noticeRepository->countByCategory($category);
+
+            return !($result > 0);
+        } catch (NoResultException|NonUniqueResultException) {
+            return false;
+        }
     }
 }

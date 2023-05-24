@@ -4,18 +4,10 @@
     {{ 'title.notice_list'|trans }}
 {% endblock %}
 {% block body %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        {% if app.user %}
-            <div class="mb-3">
-                Jesteś zalogowany jako {{ app.user.userIdentifier }}, <a href="{{ url('app_logout') }}">Wyloguj</a>
-            </div>
-        {% endif %}
-    {% else %}
-        <div>
-            <a href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a>
-        </div>
-    {% endif %}
     <h1>{{ 'title.notice_list'|trans }}</h1>
+    <a href="{{ url('category_index') }}" title="{{ 'action.show'|trans }}">
+        <button class="btn btn-primary" type="submit">Lista kategorii</button>
+    </a>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
@@ -66,7 +58,6 @@
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
-
     {% else %}
         <p>
             {{ 'message.empty_list'|trans }}

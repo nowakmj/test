@@ -54,6 +54,14 @@
                 <source>title.category_details</source>
                 <target>Szczegóły kategorii #%id%</target>
             </trans-unit>
+            <trans-unit id="title.category_create">
+                <source>title.category_create</source>
+                <target>Stwórz kategorię</target>
+            </trans-unit>
+            <trans-unit id="title.category_delete">
+                <source>title.category_delete</source>
+                <target>Usuń kategorię #%id%</target>
+            </trans-unit>
             <trans-unit id="action.show">
                 <source>action.show</source>
                 <target>Zobacz</target>
@@ -61,6 +69,22 @@
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>Zobacz</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="action.create">
+                <source>action.create</source>
+                <target>Stwórz</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Usuń</target>
             </trans-unit>
             <trans-unit id="action_login">
                 <source>action_login</source>
@@ -88,11 +112,23 @@
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
-                <target>Powrót do list</target>
+                <target>Powrót do listy</target>
             </trans-unit>
             <trans-unit id="message.empty_list">
                 <source>message.empty_list</source>
                 <target>Lista jest pusta</target>
+            </trans-unit>
+            <trans-unit id="message.created_successfully">
+                <source>message.created_successfully</source>
+                <target>Stworzono pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Usunięto pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="message.category_contains_tasks">
+                <source>message.category_contains_tasks</source>
+                <target>Kategoria zawiera ogłoszenia</target>
             </trans-unit>
         </body>
     </file>

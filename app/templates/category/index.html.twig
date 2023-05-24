@@ -6,6 +6,9 @@
 
 {% block body %}
     <h1>{{ 'title.category_list'|trans }}</h1>
+    <a href="{{ url('notice_index') }}" title="{{ 'action.show'|trans }}">
+        <button class="btn btn-primary" type="submit">Lista ogłoszeń</button>
+    </a>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
@@ -22,7 +25,22 @@
                     <td>{{ category.title }}</td>
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'action.show'|trans }}
+                            <button class="btn btn-outline-primary" type="submit">Zobacz</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('category_create') }}" title="{{ 'action.show'|trans }}">
+                            <button class="btn btn-outline-success" type="submit">Stwórz</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
+                            <button class="btn btn-outline-warning" type="submit">Edytuj</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
+                            <button class="btn btn-outline-danger" type="submit">Usuń</button>
                         </a>
                     </td>
                 </tr>

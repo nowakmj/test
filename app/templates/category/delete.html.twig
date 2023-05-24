@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.category_create'|trans }}
+    {{ 'title.category_delete'|trans({'%id%': category.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.category_create'|trans }}</h1>
+    <h1>{{ 'title.category_delete'|trans({'%id%': category.id|default('')}) }}</h1>
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <br>
+
     <div class="form-group row float-sm-right">
-        <input type="submit" value="{{ 'action.create'|trans }}" class="btn btn-primary"/>
+        <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary"/>
     </div>
     <br>
     <div class="form-group row float-sm-left">

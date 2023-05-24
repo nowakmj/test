@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.category_create'|trans }}
+    {{ 'title.category_edit'|trans({'%id%': category.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.category_create'|trans }}</h1>
+    <h1>{{ 'title.category_edit'|trans({'%id%': category.id|default('')}) }}</h1>
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <br>
