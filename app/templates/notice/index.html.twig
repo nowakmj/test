@@ -7,7 +7,7 @@
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         {% if app.user %}
             <div class="mb-3">
-                Jesteś zalogowany jako {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Wyloguj</a>
+                Jesteś zalogowany jako {{ app.user.userIdentifier }}, <a href="{{ url('app_logout') }}">Wyloguj</a>
             </div>
         {% endif %}
     {% else %}
