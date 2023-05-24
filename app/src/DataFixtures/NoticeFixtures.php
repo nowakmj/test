@@ -38,11 +38,6 @@ class NoticeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
-            $notice->setUpdatedAt(
-                DateTimeImmutable::createFromMutable(
-                    $this->faker->dateTimeBetween('-100 days', '-1 days')
-                )
-            );
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $notice->setCategory($category);

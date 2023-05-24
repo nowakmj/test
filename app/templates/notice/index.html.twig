@@ -3,8 +3,18 @@
 {% block title %}
     {{ 'title.notice_list'|trans }}
 {% endblock %}
-
 {% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if app.user %}
+            <div class="mb-3">
+                Jesteś zalogowany jako {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Wyloguj</a>
+            </div>
+        {% endif %}
+    {% else %}
+        <div>
+            <a href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a>
+        </div>
+    {% endif %}
     <h1>{{ 'title.notice_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
@@ -12,7 +22,6 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'notice.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'notice.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'notice.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'notice.content') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'notice.email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
@@ -25,14 +34,28 @@
                 <tr>
                     <td>{{ notice.id }}</td>
                     <td>{{ notice.createdAt|format_date('long') }}</td>
-                    <td>{{ notice.updatedAt|format_date('long') }}</td>
                     <td>{{ notice.content }}</td>
                     <td>{{ notice.email }}</td>
                     <td>{{ notice.category.title }}</td>
                     <td>{{ notice.title }}</td>
                     <td>
                         <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'action.show'|trans }}
+                            <button class="btn btn-outline-primary" type="submit">Zobacz</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
+                            <button class="btn btn-outline-success" type="submit">Stwórz</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
+                            <button class="btn btn-outline-warning" type="submit">Edytuj</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
+                            <button class="btn btn-outline-danger" type="submit">Usuń</button>
                         </a>
                     </td>
                 </tr>

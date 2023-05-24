@@ -39,16 +39,6 @@ class Notice
     private ?DateTimeImmutable $createdAt;
 
     /**
-     * Updated at.
-     *
-     * @var DateTimeImmutable|null
-     *
-     * @psalm-suppress PropertyNotSetInConstructor
-     */
-    #[ORM\Column(type: 'datetime_immutable')]
-    private ?DateTimeImmutable $updatedAt;
-
-    /**
      * Title.
      *
      * @var string|null

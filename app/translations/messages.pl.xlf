@@ -42,6 +42,10 @@
                 <source>title.notice_details</source>
                 <target>Szczegóły ogłoszenia #%id%</target>
             </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Zaloguj się!</target>
+            </trans-unit>
             <trans-unit id="title.category_list">
                 <source>title.category_list</source>
                 <target>Lista kategorii</target>
@@ -58,9 +62,37 @@
                 <source>action.view</source>
                 <target>Zobacz</target>
             </trans-unit>
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Zaloguj</target>
+            </trans-unit>
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
+            <trans-unit id="please.login">
+                <source>please.login</source>
+                <target>Proszę się zalogwać</target>
+            </trans-unit>
+            <trans-unit id="please.email">
+                <source>please.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="please.password">
+                <source>please.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="please.signin">
+                <source>please.signin</source>
+                <target>Zaloguj</target>
+            </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
                 <target>Powrót do list</target>
+            </trans-unit>
+            <trans-unit id="message.empty_list">
+                <source>message.empty_list</source>
+                <target>Lista jest pusta</target>
             </trans-unit>
         </body>
     </file>

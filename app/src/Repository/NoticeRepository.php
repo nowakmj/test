@@ -54,11 +54,11 @@ class NoticeRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial notice.{id, createdAt, updatedAt, title, content, email}',
+                'partial notice.{id, createdAt, title, content, email}',
                 'partial category.{id, title}'
             )
             ->join('notice.category', 'category')
-            ->orderBy('notice.updatedAt', 'DESC');
+            ->orderBy('notice.createdAt', 'DESC');
     }
 
     /**

@@ -38,6 +38,10 @@
                 <source>title.notice_list</source>
                 <target>Notice list</target>
             </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Log in!</target>
+            </trans-unit>
             <trans-unit id="title.notice_details">
                 <source>title.notice_details</source>
                 <target>Notice details #%id%</target>
@@ -62,13 +66,41 @@
                 <source>action.save</source>
                 <target>Save</target>
             </trans-unit>
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Logout</target>
+            </trans-unit>
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>Show</target>
             </trans-unit>
+            <trans-unit id="please.login">
+                <source>please.login</source>
+                <target>Please login</target>
+            </trans-unit>
+            <trans-unit id="please.email">
+                <source>please.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="please.password">
+                <source>please.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="please.signin">
+                <source>please.signin</source>
+                <target>Login</target>
+            </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
                 <target>Back to list</target>
+            </trans-unit>
+            <trans-unit id="message.empty_list">
+                <source>message.empty_list</source>
+                <target>List is empty</target>
             </trans-unit>
         </body>
     </file>
