@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.notice_create'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.notice_create'|trans }}</h1>
+    {{ form_start(form) }}
+    <div class="form-field">
+        {{ form_label(form.title) }}
+        <br>
+        {{ form_widget(form.title) }}
+    </div>
+    <div class="form-field">
+        {{ form_label(form.content) }}
+        <br>
+        {{ form_widget(form.content) }}
+    </div>
+    <div class="form-field">
+        {{ form_label(form.email) }}
+        <br>
+        {{ form_widget(form.email) }}
+    </div>
+    <div class="form-field">
+        {{ form_label(form.category) }}
+        <br>
+        {{ form_widget(form.category) }}
+    </div>
+    <br>
+    <div class="form-group row float-sm-right">
+        <input type="submit" value="{{ 'action.create'|trans }}" class="btn btn-primary"/>
+    </div>
+    {{ form_end(form) }}
+    <br>
+    <div class="form-group row float-sm-left">
+        <a href="{{ url('notice_index') }}" class="btn btn-primary">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

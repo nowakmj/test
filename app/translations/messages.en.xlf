@@ -46,6 +46,14 @@
                 <source>title.notice_details</source>
                 <target>Notice details #%id%</target>
             </trans-unit>
+            <trans-unit id="title.notice_delete">
+                <source>title.notice_delete</source>
+                <target>Delete notice #%id%</target>
+            </trans-unit>
+            <trans-unit id="title.notice_edit">
+                <source>title.notice_edit</source>
+                <target>Edit notice #%id%</target>
+            </trans-unit>
             <trans-unit id="title.category_list">
                 <source>title.category_list</source>
                 <target>Category list</target>
@@ -69,6 +77,10 @@
             <trans-unit id="action.show">
                 <source>action.show</source>
                 <target>Show</target>
+            </trans-unit>
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target>(none)</target>
             </trans-unit>
             <trans-unit id="action.save">
                 <source>action.save</source>
@@ -125,6 +137,10 @@
             <trans-unit id="message.created_successfully">
                 <source>message.created_successfully</source>
                 <target>Created successfully</target>
+            </trans-unit>
+            <trans-unit id="message.edited_successfully">
+                <source>message.edited_successfully</source>
+                <target>Edited successfully</target>
             </trans-unit>
             <trans-unit id="message.deleted_successfully">
                 <source>message.deleted_successfully</source>

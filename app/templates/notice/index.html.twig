@@ -36,17 +36,17 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a href="{{ url('notice_create', {id: notice.id}) }}" title="{{ 'action.create'|trans }}">
                             <button class="btn btn-outline-success" type="submit">Stwórz</button>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a href="{{ url('notice_edit', {id: notice.id}) }}" title="{{ 'action.edit'|trans }}">
                             <button class="btn btn-outline-warning" type="submit">Edytuj</button>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a href="{{ url('notice_delete', {id: notice.id}) }}" title="{{ 'action.delete'|trans }}">
                             <button class="btn btn-outline-danger" type="submit">Usuń</button>
                         </a>
                     </td>

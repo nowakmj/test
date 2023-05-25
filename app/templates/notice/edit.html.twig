@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.notice_edit'|trans({'%id%': notice.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.notice_edit'|trans({'%id%': notice.id|default('')}) }}</h1>
+    {{ form_start(form) }}
+    <div class="form-field">
+        {{ form_label(form.title) }}
+        <br>
+        {{ form_widget(form.title) }}
+    </div>
+    <div class="form-field">
+        {{ form_label(form.content) }}
+        <br>
+        {{ form_widget(form.content) }}
+    </div>
+    <div class="form-field">
+        {{ form_label(form.email) }}
+        <br>
+        {{ form_widget(form.email) }}
+    </div>
+    <div class="form-field">
+        {{ form_label(form.category) }}
+        <br>
+        {{ form_widget(form.category) }}
+    </div>
+    <br>
+    <div class="form-group row float-sm-right">
+        <input type="submit" value="{{ 'action.edit'|trans }}" class="btn btn-primary"/>
+    </div>
+    <br>
+    <div class="form-group row float-sm-left">
+        <a href="{{ url('notice_index') }}" class="btn btn-primary">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

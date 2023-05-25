@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.category_delete'|trans({'%id%': category.id|default('')}) }}
+    {{ 'title.notice_delete'|trans({'%id%': notice.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.category_delete'|trans({'%id%': category.id|default('')}) }}</h1>
-    {% if category is defined and category|length %}
-        <dl class="dl-horizontal">
+    <h1>{{ 'title.notice_delete'|trans({'%id%': notice.id|default('')}) }}</h1>
+    {% if notice is defined and notice|length %}
+    <dl class="dl-horizontal">
         <dt>{{ 'label.title'|trans }}</dt>
-        <dd>{{  category.title }}</dd>
-    {% endif %}
+        <dd>{{  notice.title }}</dd>
+        <dt>{{ 'label.content'|trans }}</dt>
+        <dd>{{  notice.content }}</dd>
+        {% endif %}
     </dl>
     {{ form_start(form) }}
     {{ form_widget(form) }}
@@ -21,7 +23,7 @@
     </div>
     <br>
     <div class="form-group row float-sm-left">
-        <a href="{{ url('category_index') }}" class="btn btn-primary">
+        <a href="{{ url('notice_index') }}" class="btn btn-primary">
             {{ 'action.back_to_list'|trans }}
         </a>
     </div>

@@ -96,4 +96,26 @@ class NoticeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * Save entity.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function save(Notice $notice): void
+    {
+        $this->_em->persist($notice);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function delete(Notice $notice): void
+    {
+        $this->_em->remove($notice);
+        $this->_em->flush();
+    }
 }

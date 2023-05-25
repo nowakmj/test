@@ -21,5 +21,18 @@ interface NoticeServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
+    /**
+     * Save entity.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function save(Notice $notice): void;
+
+    /**
+     * Delete entity.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function delete(Notice $notice): void;
 
 }
