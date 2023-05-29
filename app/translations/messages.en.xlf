@@ -130,6 +130,10 @@
                 <source>please.signin</source>
                 <target>Login</target>
             </trans-unit>
+            <trans-unit id="admin.panel">
+                <source>admin.panel</source>
+                <target>Admin panel</target>
+            </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
                 <target>Back to list</target>

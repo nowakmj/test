@@ -21,6 +21,9 @@
                         <button class="btn btn-primary" type="submit">{{ 'action_logout'|trans }}
                         </button>
                     </a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <button class="btn btn-primary" type="submit">{{ 'admin.panel'|trans }}</button>
+                {% endif %}
                 </div>
             {% endif %}
         {% else %}

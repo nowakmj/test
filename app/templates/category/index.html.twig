@@ -29,19 +29,25 @@
                         </a>
                     </td>
                     <td>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('category_create') }}" title="{{ 'action.show'|trans }}">
                             <button class="btn btn-outline-success" type="submit">Stwórz</button>
                         </a>
+                        {% endif %}
                     </td>
                     <td>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
                             <button class="btn btn-outline-warning" type="submit">Edytuj</button>
                         </a>
+                        {% endif %}
                     </td>
                     <td>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
                             <button class="btn btn-outline-danger" type="submit">Usuń</button>
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

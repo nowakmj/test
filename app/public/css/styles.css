@@ -35,3 +35,7 @@ th {
 label.title{
     font-weight: bold;
 }
+
+a {
+    display:inline-block;
+}
