@@ -46,7 +46,6 @@ class NoticeType extends AbstractType
             TextareaType::class,
             [
                 'label' => 'label.content',
-                'required' => true,
             ]
         );
 

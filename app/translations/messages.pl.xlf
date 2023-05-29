@@ -50,6 +50,10 @@
                 <source>title.notice_edit</source>
                 <target>Edytuj ogłoszenie #%id%</target>
             </trans-unit>
+            <trans-unit id="title.notice_create">
+                <source>title.notice_create</source>
+                <target>Stwórz kategorię</target>
+            </trans-unit>
             <trans-unit id="title.login">
                 <source>title.login</source>
                 <target>Zaloguj się!</target>
@@ -145,6 +149,18 @@
             <trans-unit id="message.category_contains_tasks">
                 <source>message.category_contains_tasks</source>
                 <target>Kategoria zawiera ogłoszenia</target>
+            </trans-unit>
+            <trans-unit id="message.category_created_successfully">
+                <source>message.category_created_successfully</source>
+                <target>Kategoria stworzona pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="message.category_edited_successfully">
+                <source>message.category.edited_successfully</source>
+                <target>Kategoria zmieniona pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="message.category_deleted_successfully">
+                <source>message.category.deleted_successfully</source>
+                <target>Kategoria usunięta pomyślnie</target>
             </trans-unit>
         </body>
     </file>

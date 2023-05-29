@@ -102,7 +102,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.created_successfully')
+                $this->translator->trans('message.category_created_successfully')
             );
 
             return $this->redirectToRoute('category_index');
@@ -139,7 +139,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.created_successfully')
+                $this->translator->trans('message.category.edited_successfully')
             );
 
             return $this->redirectToRoute('category_index');
@@ -188,7 +188,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.deleted_successfully')
+                $this->translator->trans('message.category.deleted_successfully')
             );
 
             return $this->redirectToRoute('category_index');

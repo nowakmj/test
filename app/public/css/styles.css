@@ -23,6 +23,15 @@ th {
     color: darkblue;
 }
 
-.form-field{
+.form-field {
     margin-bottom: 10px;
+}
+
+.form-field:after{
+
+    content:" *";
+    color: red;
+}
+label.title{
+    font-weight: bold;
 }
