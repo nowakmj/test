@@ -21,13 +21,11 @@
                         <button class="btn btn-primary" type="submit">{{ 'action_logout'|trans }}
                         </button>
                     </a>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <button class="btn btn-primary" type="submit">{{ 'admin.panel'|trans }}</button>
-                {% endif %}
                 </div>
             {% endif %}
         {% else %}
-            <div>
+            <div class="test">
                 <a href="{{ url('app_login') }}">
                     <button class="btn btn-primary" type="submit">{{ 'action_login'|trans }}
                     </button>

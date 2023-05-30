@@ -51,17 +51,21 @@ class NoticeRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @param array<string, object> $filters Filters
+     *
+     * @return QueryBuilder Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial notice.{id, createdAt, title, content, email}',
+                'partial notice.{id, createdAt, title, content,email}',
                 'partial category.{id, title}'
             )
             ->join('notice.category', 'category')
             ->orderBy('notice.createdAt', 'DESC');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
     /**
@@ -118,4 +122,21 @@ class NoticeRepository extends ServiceEntityRepository
         $this->_em->remove($notice);
         $this->_em->flush();
     }
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+        return $queryBuilder;
+    }
+
 }

@@ -35,4 +35,5 @@ interface NoticeServiceInterface
      */
     public function delete(Notice $notice): void;
 
+    public function prepareFilters(array $filters): array;
 }

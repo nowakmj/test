@@ -39,3 +39,9 @@ label.title{
 a {
     display:inline-block;
 }
+
+.test
+{
+    margin-left: 14px;
+    margin-top: 10px;
+}

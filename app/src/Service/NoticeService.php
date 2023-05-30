@@ -7,6 +7,8 @@ namespace App\Service;
 
 use App\Entity\Notice;
 use App\Repository\NoticeRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -26,28 +28,38 @@ class NoticeService implements NoticeServiceInterface
     private PaginatorInterface $paginator;
 
     /**
+     * Category service.
+     */
+    private CategoryServiceInterface $categoryService;
+
+    /**
      * Constructor.
      *
      * @param NoticeRepository     $noticeRepository Notice repository
      * @param PaginatorInterface $paginator      Paginator
+     * @param CategoryServiceInterface $categoryService Category Service
      */
-    public function __construct(NoticeRepository $noticeRepository, PaginatorInterface $paginator)
+    public function __construct(NoticeRepository $noticeRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService)
     {
         $this->noticeRepository = $noticeRepository;
         $this->paginator = $paginator;
+        $this->categoryService = $categoryService;
     }
 
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int                $page    Page number
+     * @param array<string, int> $filters Filters array
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface<SlidingPagination> Paginated list
      */
-    public function getPaginatedList(int $page): PaginationInterface
+    public function getPaginatedList(int $page,  array $filters = []): PaginationInterface
     {
+        $filters = $this->prepareFilters($filters);
+
         return $this->paginator->paginate(
-            $this->noticeRepository->queryAll(),
+            $this->noticeRepository->queryAll($filters),
             $page,
             NoticeRepository::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -75,5 +87,25 @@ class NoticeService implements NoticeServiceInterface
     public function delete(Notice $notice): void
     {
         $this->noticeRepository->delete($notice);
+    }
+
+    /**
+     * Prepare filters for the tasks list.
+     *
+     * @param array<string, int> $filters Raw filters from request
+     *
+     * @return array<string, object> Result array of filters
+     * @throws NonUniqueResultException
+     */
+    public function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+        if (!empty($filters['category_id'])) {
+            $category = $this->categoryService->findOneById($filters['category_id']);
+            if (null !== $category) {
+                $resultFilters['category'] = $category;
+            }
+        }
+        return $resultFilters;
     }
 }
