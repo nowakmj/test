@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="title.notice_create">
                 <source>title.notice_create</source>
-                <target>Stwórz kategorię</target>
+                <target>Stwórz ogłoszenie</target>
             </trans-unit>
             <trans-unit id="title.login">
                 <source>title.login</source>
