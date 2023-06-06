@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'admin.panel'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.change.details'|trans }}</h1>
+    {{ form_start(form) }}
+    <div class="form-field2">
+        {{ form_label(form.currentPassword) }}
+        <br>
+        {{ form_widget(form.currentPassword) }}
+    </div>
+    <div class="form-field2">
+        {{ form_label(form.newPassword) }}
+        <br>
+        {{ form_widget(form.newPassword) }}
+    </div>
+    <div class="form-field2">
+        {{ form_label(form.email) }}
+        <br>
+        {{ form_widget(form.email) }}
+    </div>
+    <br>
+    {{ form_end(form) }}
+{% endblock %}

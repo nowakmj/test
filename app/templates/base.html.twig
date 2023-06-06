@@ -21,7 +21,9 @@
                         <button class="btn btn-primary" type="submit">{{ 'action_logout'|trans }}
                         </button>
                     </a>
+                    <a href="{{ url('admin_panel') }}">
                     <button class="btn btn-primary" type="submit">{{ 'admin.panel'|trans }}</button>
+                    </a>
                 </div>
             {% endif %}
         {% else %}

@@ -150,6 +150,30 @@
                 <source>message.edited_successfully</source>
                 <target>Edited successfully</target>
             </trans-unit>
+            <trans-unit id="message.incorrect.password">
+                <source>message.incorrect.password</source>
+                <target>Incorrect password</target>
+            </trans-unit>
+            <trans-unit id="password.changed">
+                <source>password.changed</source>
+                <target>Details changed successfully</target>
+            </trans-unit>
+            <trans-unit id="current.password">
+                <source>current.password</source>
+                <target>Current password</target>
+            </trans-unit>
+            <trans-unit id="new.email">
+                <source>new.email</source>
+                <target>New email</target>
+            </trans-unit>
+            <trans-unit id="new.password">
+                <source>new.password</source>
+                <target>New password</target>
+            </trans-unit>
+            <trans-unit id="change.password">
+                <source>change.password</source>
+                <target>Change details</target>
+            </trans-unit>
             <trans-unit id="message.deleted_successfully">
                 <source>message.deleted_successfully</source>
                 <target>Deleted successfully</target>
@@ -157,6 +181,10 @@
             <trans-unit id="message.category_contains_tasks">
                 <source>message.category_contains_tasks</source>
                 <target>Category contains tasks</target>
+            </trans-unit>
+            <trans-unit id="title.change.details">
+                <source>title.change.details</source>
+                <target>Change details</target>
             </trans-unit>
             <trans-unit id="message.category_created_successfully">
                 <source>message.category.created_successfully</source>

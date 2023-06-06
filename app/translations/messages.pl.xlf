@@ -142,6 +142,34 @@
                 <source>message.created_successfully</source>
                 <target>Stworzono pomyślnie</target>
             </trans-unit>
+            <trans-unit id="message.incorrect.password">
+                <source>message.incorrect.password</source>
+                <target>Nieprawidłowe hasło</target>
+            </trans-unit>
+            <trans-unit id="password.changed">
+                <source>password.changed</source>
+                <target>Dane zmienione pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="new.email">
+                <source>new.email</source>
+                <target>Nowy email</target>
+            </trans-unit>
+            <trans-unit id="current.password">
+                <source>current.password</source>
+                <target>Aktualne hasło</target>
+            </trans-unit>
+            <trans-unit id="new.password">
+                <source>new.password</source>
+                <target>Nowe hasło</target>
+            </trans-unit>
+            <trans-unit id="change.password">
+                <source>change.password</source>
+                <target>Zmień dane</target>
+            </trans-unit>
+            <trans-unit id="title.change.details">
+                <source>title.change.details</source>
+                <target>Zmień swoje dane</target>
+            </trans-unit>
             <trans-unit id="message.edited_successfully">
                 <source>message.edited_successfully</source>
                 <target>Zmieniono pomyślnie</target>

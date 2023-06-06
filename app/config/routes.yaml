@@ -1,6 +1,3 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-change_password:
-  path: /change-password
-  controller: App\Controller\SecurityController::changePassword
