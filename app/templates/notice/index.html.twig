@@ -18,8 +18,13 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'notice.email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'notice.title') }}</th>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                <th>{{ knp_pagination_sortable(pagination, 'label.status'|trans, 'notice.status') }}</th>
+                     {% endif %}
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
+
             </thead>
             <tbody>
             {% for notice in pagination.items %}
@@ -34,6 +39,14 @@
                         </a>
                     </td>
                     <td>{{ notice.title }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <td>{{ notice.isActive}}
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Status</label>
+                        </div>
+                        </td>
+                    {% endif %}
                     <td>
                         <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
                             <button class="btn btn-outline-primary" type="submit">Zobacz</button>

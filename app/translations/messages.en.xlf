@@ -166,6 +166,10 @@
                 <source>new.email</source>
                 <target>New email</target>
             </trans-unit>
+            <trans-unit id="label.status">
+                <source>label.status</source>
+                <target>Status</target>
+            </trans-unit>
             <trans-unit id="new.password">
                 <source>new.password</source>
                 <target>New password</target>

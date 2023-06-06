@@ -60,6 +60,7 @@ class NoticeController extends AbstractController
 
         return $this->render('notice/index.html.twig', ['pagination' => $pagination]);
     }
+
     /**
      * Get filters from request.
      *
@@ -102,7 +103,7 @@ class NoticeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'notice_create', methods: 'GET|POST', )]
+    #[Route('/create', name: 'notice_create', methods: 'GET|POST',)]
     public function create(Request $request): Response
     {
         $notice = new Notice();
@@ -124,14 +125,14 @@ class NoticeController extends AbstractController
             return $this->redirectToRoute('notice_index');
         }
 
-        return $this->render('notice/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('notice/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Notice    $notice    Notice entity
+     * @param Notice $notice Notice entity
      *
      * @return Response HTTP response
      */
@@ -172,7 +173,7 @@ class NoticeController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Notice    $notice    Notice entity
+     * @param Notice $notice Notice entity
      *
      * @return Response HTTP response
      */
