@@ -48,7 +48,7 @@ class ChangePasswordType extends AbstractType
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'change.password',
-                'attr' => [ 'class' => 'btn btn-primary'],
+                'attr' => [ 'class' => 'btn btn-warning'],
             ]);
     }
 

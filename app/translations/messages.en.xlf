@@ -134,6 +134,10 @@
                 <source>admin.panel</source>
                 <target>Admin panel</target>
             </trans-unit>
+            <trans-unit id="notice.service">
+                <source>notice.service</source>
+                <target>Serwis ogłoszeniowy</target>
+            </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
                 <target>Back to list</target>

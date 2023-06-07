@@ -33,6 +33,7 @@ class NoticeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             $notice->setTitle($this->faker->sentence);
             $notice->setContent($this->faker->paragraph);
             $notice->setEmail($this->faker->email);
+            $notice->setIsActive($this->faker->numberBetween(0, 1));
             $notice->setCreatedAt(
                 DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')

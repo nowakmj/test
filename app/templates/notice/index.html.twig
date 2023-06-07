@@ -5,11 +5,8 @@
 {% endblock %}
 {% block body %}
     <h1>{{ 'title.notice_list'|trans }}</h1>
-    <a href="{{ url('category_index') }}" title="{{ 'action.show'|trans }}">
-        <button class="btn btn-primary" type="submit">Lista kategorii</button>
-    </a>
     {% if pagination is defined and pagination.items|length %}
-        <table class="table table-striped">
+        <table class="table table-bordered table-dark">
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'notice.id') }}</th>
@@ -23,6 +20,10 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.status'|trans, 'notice.status') }}</th>
                      {% endif %}
                 <th>{{ 'label.actions'|trans }}</th>
+    {% if is_granted('ROLE_ADMIN') %}
+                <th></th>
+                <th></th>
+    {% endif %}
             </tr>
 
             </thead>
@@ -52,25 +53,20 @@
                             <button class="btn btn-outline-primary" type="submit">Zobacz</button>
                         </a>
                     </td>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <td>
-                        <a href="{{ url('notice_create', {id: notice.id}) }}" title="{{ 'action.create'|trans }}">
-                            <button class="btn btn-outline-success" type="submit">Stwórz</button>
-                        </a>
-                    </td>
-                    <td>
-                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('notice_edit', {id: notice.id}) }}" title="{{ 'action.edit'|trans }}">
                             <button class="btn btn-outline-warning" type="submit">Edytuj</button>
                         </a>
-                        {% endif %}
                     </td>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
                     <td>
-                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('notice_delete', {id: notice.id}) }}" title="{{ 'action.delete'|trans }}">
                             <button class="btn btn-outline-danger" type="submit">Usuń</button>
                         </a>
-                        {% endif %}
                     </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

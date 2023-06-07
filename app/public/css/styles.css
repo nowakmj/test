@@ -7,24 +7,30 @@ a:hover {
 }
 
 body{
-    background-color: #caa2fa;
+    background-color: #2b3136;
 }
 
 a{
-    color:darkblue;
+    color:white;
 }
 
 h1
 {
-    color:darkblue;
+    color:white;
 }
 
 th {
-    color: darkblue;
+    color: white;
 }
 
 .form-field {
     margin-bottom: 10px;
+    color:white;
+}
+
+.form-field2 {
+    margin-bottom: 10px;
+    color:white;
 }
 
 .form-field:after{
@@ -35,7 +41,9 @@ th {
 label.title{
     font-weight: bold;
 }
-
+label {
+    color:white;
+}
 a {
     display:inline-block;
 }
@@ -44,4 +52,12 @@ a {
 {
     margin-left: 14px;
     margin-top: 10px;
+}
+
+dl {
+    color:white;
+}
+
+.navbar-brand{
+    margin-left: 27px;
 }

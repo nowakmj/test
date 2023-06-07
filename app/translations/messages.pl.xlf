@@ -34,6 +34,10 @@
                 <source>label.category</source>
                 <target>Kategoria</target>
             </trans-unit>
+            <trans-unit id="notice.service">
+                <source>notice.service</source>
+                <target>Serwis ogłoszeniowy</target>
+            </trans-unit>
             <trans-unit id="title.notice_list">
                 <source>title.notice_list</source>
                 <target>Lista ogłoszeń</target>
