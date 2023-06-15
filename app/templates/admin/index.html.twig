@@ -6,24 +6,35 @@
 
 {% block body %}
     <h1>{{ 'title.change.details'|trans }}</h1>
-    {{ form_start(form) }}
+    {{ form_start(changePasswordForm) }}
     <div class="form-field2">
-        {{ form_label(form.currentPassword) }}
+        {{ form_label(changePasswordForm.currentPassword) }}
         <br>
-        {{ form_widget(form.currentPassword) }}
+        {{ form_widget(changePasswordForm.currentPassword) }}
     </div>
     <div class="form-field2">
-        {{ form_label(form.newPassword) }}
+        {{ form_label(changePasswordForm.newPassword) }}
         <br>
-        {{ form_widget(form.newPassword) }}
-    </div>
-    <div class="form-field2">
-        {{ form_label(form.email) }}
-        <br>
-        {{ form_widget(form.email) }}
+        {{ form_widget(changePasswordForm.newPassword) }}
     </div>
     <br>
-    {{ form_end(form) }}
+    {{ form_end(changePasswordForm) }}
+<br>
+    {{ form_start(changeEmailForm) }}
+    <br>
+    <div class="form-field2">
+        {{ form_label(changeEmailForm.newEmail) }}
+        <br>
+        {{ form_widget(changeEmailForm.newEmail) }}
+    </div>
+    <div class="form-field2">
+        {{ form_label(changeEmailForm.currentPassword) }}
+        <br>
+        {{ form_widget(changeEmailForm.currentPassword) }}
+        <br>
+    </div>
+    <br>
+    {{ form_end(changeEmailForm) }}
     <br>
     <a href="{{ url('notice_index') }}" title="{{ 'action.back_to_list'|trans }}">
         <button class="btn btn-light" type="submit">{{ 'action.back_to_list'|trans }}</button>

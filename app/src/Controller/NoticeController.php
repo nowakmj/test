@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Notice;
 use App\Form\Type\NoticeType;
 use App\Service\NoticeService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,14 +30,16 @@ class NoticeController extends AbstractController
      * Translator.
      */
     private TranslatorInterface $translator;
+    private EntityManagerInterface $entityManager;
 
     /**
      * Constructor.
      */
-    public function __construct(NoticeService $noticeService, TranslatorInterface $translator)
+    public function __construct(NoticeService $noticeService, TranslatorInterface $translator, EntityManagerInterface $entityManager)
     {
         $this->noticeService = $noticeService;
         $this->translator = $translator;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -208,5 +211,36 @@ class NoticeController extends AbstractController
                 'notice' => $notice,
             ]
         );
+    }
+    #[Route('/{id}/activate', name: 'notice_activate', methods: 'GET')]
+    public function activate(Notice $notice): Response
+    {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('message.noadmin');
+        }
+        $this->addFlash(
+            'success',
+            $this->translator->trans('message.notice.accepted')
+        );
+        $notice->setIsActive(1);
+        $this->entityManager->flush();
+
+        return $this->redirectToRoute('notice_index');
+    }
+
+    #[Route('/{id}/deactivate', name: 'notice_deactivate', methods: 'GET')]
+    public function deactivate(Notice $notice): Response
+    {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('message.noadmin');
+        }
+        $this->addFlash(
+            'warning',
+            $this->translator->trans('message.notice.deactivated')
+        );
+        $notice->setIsActive(0);
+        $this->entityManager->flush();
+
+        return $this->redirectToRoute('notice_index');
     }
 }

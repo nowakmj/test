@@ -15,12 +15,9 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'notice.email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'notice.title') }}</th>
-
-                    {% if is_granted('ROLE_ADMIN') %}
-                <th>{{ knp_pagination_sortable(pagination, 'label.status'|trans, 'notice.status') }}</th>
-                     {% endif %}
                 <th>{{ 'label.actions'|trans }}</th>
     {% if is_granted('ROLE_ADMIN') %}
+                <th></th>
                 <th></th>
                 <th></th>
     {% endif %}
@@ -29,6 +26,7 @@
             </thead>
             <tbody>
             {% for notice in pagination.items %}
+                {% if is_granted('ROLE_ADMIN') or notice.isActive == 1 %}
                 <tr>
                     <td>{{ notice.id }}</td>
                     <td>{{ notice.createdAt|format_date('long') }}</td>
@@ -40,14 +38,6 @@
                         </a>
                     </td>
                     <td>{{ notice.title }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <td>{{ notice.isActive}}
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                            <label class="form-check-label" for="flexSwitchCheckChecked">Status</label>
-                        </div>
-                        </td>
-                    {% endif %}
                     <td>
                         <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
                             <button class="btn btn-outline-primary" type="submit">Zobacz</button>
@@ -66,8 +56,22 @@
                             <button class="btn btn-outline-danger" type="submit">Usuń</button>
                         </a>
                     </td>
+                        <td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {% if notice.isActive == 0 %}
+                            <a href="{{ url('notice_activate', { id: notice.id }) }}">
+                                <button class="btn btn-outline-success" type="submit">Aktywuj</button>
+                                </a>
+                                {% else %}
+                                    <a href="{{ url('notice_deactivate', { id: notice.id }) }}">
+                                        <button class="btn btn-outline-warning" type="submit">Dezaktywuj</button>
+                                    </a>
+                                {% endif %}
+                        {% endif %}
+                        </td>
                     {% endif %}
                 </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>

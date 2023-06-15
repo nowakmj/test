@@ -160,7 +160,7 @@
             </trans-unit>
             <trans-unit id="password.changed">
                 <source>password.changed</source>
-                <target>Details changed successfully</target>
+                <target>Password changed successfully</target>
             </trans-unit>
             <trans-unit id="current.password">
                 <source>current.password</source>
@@ -184,15 +184,31 @@
             </trans-unit>
             <trans-unit id="change.password">
                 <source>change.password</source>
-                <target>Change details</target>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="change.email">
+                <source>change.email</source>
+                <target>Change email</target>
+            </trans-unit>
+            <trans-unit id="email.changed">
+                <source>email.changed</source>
+                <target>Email changed successfully</target>
             </trans-unit>
             <trans-unit id="message.deleted_successfully">
                 <source>message.deleted_successfully</source>
                 <target>Deleted successfully</target>
             </trans-unit>
-            <trans-unit id="message.category_contains_tasks">
+            <trans-unit id="message.category_contains_notices">
                 <source>message.category_contains_tasks</source>
                 <target>Category contains tasks</target>
+            </trans-unit>
+            <trans-unit id="message.notice.deactivated">
+                <source>message.notice.deactivated</source>
+                <target>Notice deactivated</target>
+            </trans-unit>
+            <trans-unit id="message.notice.accepted">
+                <source>message.notice.accepted</source>
+                <target>Notice accepted</target>
             </trans-unit>
             <trans-unit id="title.change.details">
                 <source>title.change.details</source>

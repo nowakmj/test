@@ -1,26 +1,21 @@
 <?php
 /**
- * Notice type.
+ * Change email type.
  */
 
 namespace App\Form\Type;
 
-use App\Entity\Category;
-use App\Entity\Notice;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ChangePasswordType.
+ * Class ChangeEmailType.
  */
-class ChangePasswordType extends AbstractType
+class ChangeEmailType extends AbstractType
 {
     /**
      * Builds the form.
@@ -30,22 +25,20 @@ class ChangePasswordType extends AbstractType
      *
      * @param FormBuilderInterface $builder The form builder
      * @param array<string, mixed> $options Form options
-     *
-     * @see FormTypeExtensionInterface::buildForm()
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('newEmail', EmailType::class, [
+                'label' => 'new.email',
+            ])
             ->add('currentPassword', PasswordType::class, [
                 'label' => 'current.password',
                 'required' => $options['current_password_required'],
             ])
-            ->add('newPassword', PasswordType::class, [
-                'label' => 'new.password',
-            ])
             ->add('save', SubmitType::class, [
-                'label' => 'change.password',
-                'attr' => [ 'class' => 'btn btn-warning'],
+                'label' => 'change.email',
+                'attr' => ['class' => 'btn btn-warning'],
             ]);
     }
 
@@ -62,4 +55,3 @@ class ChangePasswordType extends AbstractType
         ]);
     }
 }
-

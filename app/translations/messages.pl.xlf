@@ -160,7 +160,7 @@
             </trans-unit>
             <trans-unit id="password.changed">
                 <source>password.changed</source>
-                <target>Dane zmienione pomyślnie</target>
+                <target>Hasło zmienione pomyślnie</target>
             </trans-unit>
             <trans-unit id="new.email">
                 <source>new.email</source>
@@ -176,7 +176,11 @@
             </trans-unit>
             <trans-unit id="change.password">
                 <source>change.password</source>
-                <target>Zmień dane</target>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="change.email">
+                <source>change.email</source>
+                <target>Zmień email</target>
             </trans-unit>
             <trans-unit id="title.change.details">
                 <source>title.change.details</source>
@@ -194,9 +198,21 @@
                 <source>message.category_contains_tasks</source>
                 <target>Kategoria zawiera ogłoszenia</target>
             </trans-unit>
+            <trans-unit id="email.changed">
+                <source>email.changed</source>
+                <target>Email zmieniony pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="message.notice.deactivated">
+                <source>message.notice.deactivated</source>
+                <target>Ogłoszenie dezaktywowane</target>
+            </trans-unit>
             <trans-unit id="message.category_created_successfully">
                 <source>message.category_created_successfully</source>
                 <target>Kategoria stworzona pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="message.notice.accepted">
+                <source>message.notice.accepted</source>
+                <target>Ogłoszenie aktywowane</target>
             </trans-unit>
             <trans-unit id="message.category_edited_successfully">
                 <source>message.category.edited_successfully</source>

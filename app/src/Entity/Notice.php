@@ -68,6 +68,9 @@ class Notice
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\Column]
+    private ?bool $isActive = null;
     /**
      * Getter for Id.
      *
@@ -182,6 +185,18 @@ class Notice
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?int
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(int $isActive): self
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }
