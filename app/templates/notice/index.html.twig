@@ -40,31 +40,31 @@
                     <td>{{ notice.title }}</td>
                     <td>
                         <a href="{{ url('notice_show', {id: notice.id}) }}" title="{{ 'action.show'|trans }}">
-                            <button class="btn btn-outline-primary" type="submit">Zobacz</button>
+                            <button class="btn btn-outline-primary" type="submit">{{ 'notice.show'|trans }}</button>
                         </a>
                     </td>
                     {% if is_granted('ROLE_ADMIN') %}
                     <td>
                         <a href="{{ url('notice_edit', {id: notice.id}) }}" title="{{ 'action.edit'|trans }}">
-                            <button class="btn btn-outline-warning" type="submit">Edytuj</button>
+                            <button class="btn btn-outline-warning" type="submit">{{ 'notice.edit'|trans }}</button>
                         </a>
                     </td>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                     <td>
                         <a href="{{ url('notice_delete', {id: notice.id}) }}" title="{{ 'action.delete'|trans }}">
-                            <button class="btn btn-outline-danger" type="submit">Usuń</button>
+                            <button class="btn btn-outline-danger" type="submit">{{ 'notice.delete'|trans }}</button>
                         </a>
                     </td>
                         <td>
                         {% if is_granted('ROLE_ADMIN') %}
                             {% if notice.isActive == 0 %}
                             <a href="{{ url('notice_activate', { id: notice.id }) }}">
-                                <button class="btn btn-outline-success" type="submit">Aktywuj</button>
+                                <button class="btn btn-outline-success" type="submit">{{ 'notice.activate'|trans }}</button>
                                 </a>
                                 {% else %}
                                     <a href="{{ url('notice_deactivate', { id: notice.id }) }}">
-                                        <button class="btn btn-outline-warning" type="submit">Dezaktywuj</button>
+                                        <button class="btn btn-outline-warning" type="submit">{{ 'notice.deactivate'|trans }}</button>
                                     </a>
                                 {% endif %}
                         {% endif %}

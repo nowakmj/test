@@ -6,6 +6,38 @@
                 <source>label.actions</source>
                 <target>Akcje</target>
             </trans-unit>
+            <trans-unit id="notice.show">
+                <source>notice.show</source>
+                <target>Zobacz</target>
+            </trans-unit>
+            <trans-unit id="notice.edit">
+                <source>notice.edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="notice.delete">
+                <source>notice.delete</source>
+                <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="notice.activate">
+                <source>notice.activate</source>
+                <target>Aktywuj</target>
+            </trans-unit>
+            <trans-unit id="notice.deactivate">
+                <source>notice.deactivate</source>
+                <target>Dezaktywuj</target>
+            </trans-unit>
+            <trans-unit id="category.show">
+                <source>category.show</source>
+                <target>Zobacz</target>
+            </trans-unit>
+            <trans-unit id="category.edit">
+                <source>category.edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="category.delete">
+                <source>category.delete</source>
+                <target>Usuń</target>
+            </trans-unit>
             <trans-unit id="label.id">
                 <source>label.id</source>
                 <target>Id</target>
@@ -77,6 +109,10 @@
             <trans-unit id="title.category_create">
                 <source>title.category_create</source>
                 <target>Stwórz kategorię</target>
+            </trans-unit>
+            <trans-unit id="title.category_edit">
+                <source>title.category_edit</source>
+                <target>Edytuj kategorię #%id%</target>
             </trans-unit>
             <trans-unit id="title.category_delete">
                 <source>title.category_delete</source>
@@ -213,6 +249,10 @@
             <trans-unit id="message.notice.accepted">
                 <source>message.notice.accepted</source>
                 <target>Ogłoszenie aktywowane</target>
+            </trans-unit>
+            <trans-unit id="message.record_not_found">
+                <source>message.record_not_found</source>
+                <target>Nie znaleziono rekordu</target>
             </trans-unit>
             <trans-unit id="message.category_edited_successfully">
                 <source>message.category.edited_successfully</source>

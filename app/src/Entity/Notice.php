@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Notice entity.
  */
@@ -6,8 +7,8 @@
 namespace App\Entity;
 
 use App\Repository\NoticeRepository;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Notice.
@@ -20,8 +21,6 @@ class Notice
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,46 +30,43 @@ class Notice
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
-     *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?DateTimeImmutable $createdAt;
+    #[Gedmo\Timestampable(on: 'create')]
+    private ?\DateTimeImmutable $createdAt;
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
+
     /**
      * Content.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'text')]
     private ?string $content;
+
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $email;
 
     /**
      * Category.
-     *
-     * @var Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\Column]
+    /**
+     * IsActive.
+     */
+    #[ORM\Column(type: 'boolean')]
     private ?bool $isActive = null;
+
     /**
      * Getter for Id.
      *
@@ -84,9 +80,9 @@ class Notice
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -94,31 +90,11 @@ class Notice
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable|null $createdAt Created at
      */
-    public function setCreatedAt(?DateTimeImmutable $createdAt): void
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
-    }
-
-    /**
-     * Getter for updated at.
-     *
-     * @return DateTimeImmutable|null Updated at
-     */
-    public function getUpdatedAt(): ?DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Setter for updated at.
-     *
-     * @param DateTimeImmutable|null $updatedAt Updated at
-     */
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
     }
 
     /**
@@ -140,6 +116,7 @@ class Notice
     {
         $this->title = $title;
     }
+
     /**
      * Getter for content.
      *
@@ -149,6 +126,7 @@ class Notice
     {
         return $this->content;
     }
+
     /**
      * Setter for content.
      *
@@ -158,6 +136,7 @@ class Notice
     {
         $this->content = $content;
     }
+
     /**
      * Getter for email.
      *
@@ -167,6 +146,7 @@ class Notice
     {
         return $this->email;
     }
+
     /**
      * Setter for email.
      *
@@ -177,11 +157,23 @@ class Notice
         $this->email = $email;
     }
 
+    /**
+     * Getter for category.
+     *
+     * @return Category|null Category
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category Category
+     *
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -189,12 +181,24 @@ class Notice
         return $this;
     }
 
-    public function getIsActive(): ?int
+    /**
+     * Getter for isActive.
+     *
+     * @return bool|null IsActive
+     */
+    public function getIsActive(): ?bool
     {
         return $this->isActive;
     }
 
-    public function setIsActive(int $isActive): self
+    /**
+     * Setter for isActive.
+     *
+     * @param bool|null $isActive IsActive
+     *
+     * @return $this
+     */
+    public function setIsActive(?bool $isActive): self
     {
         $this->isActive = $isActive;
 

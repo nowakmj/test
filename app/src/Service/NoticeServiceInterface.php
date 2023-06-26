@@ -1,6 +1,6 @@
 <?php
 /**
- * Task service interface.
+ * Notice service interface.
  */
 
 namespace App\Service;
@@ -9,7 +9,7 @@ use App\Entity\Notice;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Interface TaskServiceInterface.
+ * Interface NoticeServiceInterface.
  */
 interface NoticeServiceInterface
 {
@@ -21,6 +21,7 @@ interface NoticeServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
+
     /**
      * Save entity.
      *
@@ -35,5 +36,24 @@ interface NoticeServiceInterface
      */
     public function delete(Notice $notice): void;
 
+    /**
+     * Prepare filters.
+     *
+     * @param array $filters Filters
+     */
     public function prepareFilters(array $filters): array;
+
+    /**
+     * Activate notice.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function activate(Notice $notice): void;
+
+    /**
+     * Deactivate notice.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function deactivate(Notice $notice): void;
 }

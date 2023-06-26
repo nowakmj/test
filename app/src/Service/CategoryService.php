@@ -6,7 +6,6 @@
 namespace App\Service;
 
 use App\Entity\Category;
-use App\Entity\Notice;
 use App\Repository\CategoryRepository;
 use App\Repository\NoticeRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -20,26 +19,31 @@ use Knp\Component\Pager\PaginatorInterface;
 class CategoryService implements CategoryServiceInterface
 {
     /**
-     * Category repository.
+     * Category Repository.
      */
     private CategoryRepository $categoryRepository;
-
     /**
-     * Paginator.
+     * Paginator Interface.
      */
     private PaginatorInterface $paginator;
+    /**
+     * Notice Repository.
+     */
     private NoticeRepository $noticeRepository;
 
     /**
      * Constructor.
      *
-     * @param CategoryRepository     $categoryRepository Category repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param PaginatorInterface $paginator          Paginator interface
+     * @param NoticeRepository   $noticeRepository   Notice registry
      */
     public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, NoticeRepository $noticeRepository)
     {
         $this->categoryRepository = $categoryRepository;
+
         $this->paginator = $paginator;
+
         $this->noticeRepository = $noticeRepository;
     }
 
@@ -58,6 +62,7 @@ class CategoryService implements CategoryServiceInterface
             CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
     /**
      * Save entity.
      *
@@ -67,6 +72,7 @@ class CategoryService implements CategoryServiceInterface
     {
         $this->categoryRepository->save($category);
     }
+
     /**
      * Delete entity.
      *
@@ -101,6 +107,7 @@ class CategoryService implements CategoryServiceInterface
             return false;
         }
     }
+
     /**
      * Find by id.
      *

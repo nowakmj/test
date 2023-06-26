@@ -7,7 +7,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Notice;
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -35,7 +34,7 @@ class NoticeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             $notice->setIsActive(0);
             $notice->setEmail($this->faker->email);
             $notice->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );

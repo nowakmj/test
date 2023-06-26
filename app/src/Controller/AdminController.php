@@ -1,39 +1,59 @@
 <?php
 
+/**
+ * Admin Controller.
+ */
+
 namespace App\Controller;
 
 use App\Form\Type\ChangeEmailType;
 use App\Form\Type\ChangePasswordType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\AdminServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class AdminController.
+ */
 class AdminController extends AbstractController
 {
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
-    /**
-     * Entity Manager.
-     *
-     * @var EntityManagerInterface
-     */
-    private EntityManagerInterface $entityManager;
 
-    public function __construct(TranslatorInterface $translator, EntityManagerInterface $entityManager)
+    /**
+     * Admin Service.
+     */
+    private AdminServiceInterface $adminService;
+
+    /**
+     * Constructor.
+     *
+     * @param TranslatorInterface   $translator   the translator service
+     * @param AdminServiceInterface $adminService the admin service
+     */
+    public function __construct(TranslatorInterface $translator, AdminServiceInterface $adminService)
     {
         $this->translator = $translator;
-        $this->entityManager = $entityManager;
+        $this->adminService = $adminService;
     }
 
+    /**
+     * Change password action.
+     *
+     * @param Request                     $request         the request object
+     * @param UserPasswordHasherInterface $passwordEncoder the password encoder service
+     *
+     * @return RedirectResponse|Response the response object
+     */
     #[Route('/admin', name: 'admin_panel')]
-    public function changePassword(Request $request, UserPasswordHasherInterface $passwordEncoder): \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+    public function changePassword(Request $request, UserPasswordHasherInterface $passwordEncoder): RedirectResponse|Response
     {
         $user = $this->getUser();
 
@@ -47,14 +67,11 @@ class AdminController extends AbstractController
 
             if (!$passwordEncoder->isPasswordValid($user, $data['currentPassword'])) {
                 $this->addFlash('danger', $this->translator->trans('message.incorrect.password'));
+
                 return $this->redirectToRoute('admin_panel');
             }
 
-            $newEncodedPassword = $passwordEncoder->hashPassword($user, $data['newPassword']);
-            $user->setPassword($newEncodedPassword);
-
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
+            $this->adminService->updatePassword($user, $data['newPassword']);
 
             $this->addFlash('success', $this->translator->trans('password.changed'));
 
@@ -69,13 +86,11 @@ class AdminController extends AbstractController
 
             if (!$passwordEncoder->isPasswordValid($user, $data['currentPassword'])) {
                 $this->addFlash('danger', $this->translator->trans('message.incorrect.password'));
+
                 return $this->redirectToRoute('admin_panel');
             }
 
-            $user->setEmail($data['newEmail']);
-
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
+            $this->adminService->updateEmail($user, $data['newEmail']);
 
             $this->addFlash('success', $this->translator->trans('email.changed'));
 

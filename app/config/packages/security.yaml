@@ -47,6 +47,7 @@ security:
         - { path: ^/category/[0-9]+/edit, roles: ROLE_ADMIN }
         - { path: ^/category/[0-9]+/delete, roles: ROLE_ADMIN }
         - { path: ^/category/create, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/, roles: PUBLIC_ACCESS}
 
 

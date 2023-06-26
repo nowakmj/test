@@ -26,20 +26,20 @@
                     <td>{{ category.title }}</td>
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">
-                            <button class="btn btn-outline-primary" type="submit">Zobacz</button>
+                            <button class="btn btn-outline-primary" type="submit">{{ 'category.show'|trans }}</button>
                         </a>
                     </td>
                     {% if is_granted('ROLE_ADMIN') %}
                     <td>
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
-                            <button class="btn btn-outline-warning" type="submit">Edytuj</button>
+                            <button class="btn btn-outline-warning" type="submit">{{ 'category.edit'|trans }}</button>
                         </a>
                     </td>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                     <td>
                         <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
-                            <button class="btn btn-outline-danger" type="submit">Usuń</button>
+                            <button class="btn btn-outline-danger" type="submit">{{ 'category.delete'|trans }}</button>
                         </a>
                     </td>
                     {% endif %}

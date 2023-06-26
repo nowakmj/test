@@ -35,9 +35,9 @@ class NoticeService implements NoticeServiceInterface
     /**
      * Constructor.
      *
-     * @param NoticeRepository     $noticeRepository Notice repository
-     * @param PaginatorInterface $paginator      Paginator
-     * @param CategoryServiceInterface $categoryService Category Service
+     * @param NoticeRepository         $noticeRepository Notice repository
+     * @param PaginatorInterface       $paginator        Paginator
+     * @param CategoryServiceInterface $categoryService  Category Service
      */
     public function __construct(NoticeRepository $noticeRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService)
     {
@@ -53,8 +53,10 @@ class NoticeService implements NoticeServiceInterface
      * @param array<string, int> $filters Filters array
      *
      * @return PaginationInterface<SlidingPagination> Paginated list
+     *
+     * @throws NonUniqueResultException
      */
-    public function getPaginatedList(int $page,  array $filters = []): PaginationInterface
+    public function getPaginatedList(int $page, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
 
@@ -72,10 +74,9 @@ class NoticeService implements NoticeServiceInterface
      */
     public function save(Notice $notice): void
     {
-        if ($notice->getId() == null) {
+        if (null === $notice->getId()) {
             $notice->setCreatedAt(new \DateTimeImmutable());
         }
-        $notice->setUpdatedAt(new \DateTimeImmutable());
         $this->noticeRepository->save($notice);
     }
 
@@ -95,6 +96,7 @@ class NoticeService implements NoticeServiceInterface
      * @param array<string, int> $filters Raw filters from request
      *
      * @return array<string, object> Result array of filters
+     *
      * @throws NonUniqueResultException
      */
     public function prepareFilters(array $filters): array
@@ -106,6 +108,29 @@ class NoticeService implements NoticeServiceInterface
                 $resultFilters['category'] = $category;
             }
         }
+
         return $resultFilters;
+    }
+
+    /**
+     * Action activate.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function activate(Notice $notice): void
+    {
+        $notice->setIsActive(true);
+        $this->noticeRepository->save($notice);
+    }
+
+    /**
+     * Action deactivate.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function deactivate(Notice $notice): void
+    {
+        $notice->setIsActive(false);
+        $this->noticeRepository->save($notice);
     }
 }

@@ -8,7 +8,7 @@ namespace App\Controller;
 use App\Entity\Notice;
 use App\Form\Type\NoticeType;
 use App\Service\NoticeService;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,23 +23,24 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class NoticeController extends AbstractController
 {
     /**
-     * Notice service.
+     * NoticeService.
      */
     private NoticeService $noticeService;
     /**
      * Translator.
      */
     private TranslatorInterface $translator;
-    private EntityManagerInterface $entityManager;
 
     /**
      * Constructor.
+     *
+     * @param NoticeService       $noticeService The notice service
+     * @param TranslatorInterface $translator    The translator
      */
-    public function __construct(NoticeService $noticeService, TranslatorInterface $translator, EntityManagerInterface $entityManager)
+    public function __construct(NoticeService $noticeService, TranslatorInterface $translator)
     {
         $this->noticeService = $noticeService;
         $this->translator = $translator;
-        $this->entityManager = $entityManager;
     }
 
     /**
@@ -48,6 +49,8 @@ class NoticeController extends AbstractController
      * @param Request $request HTTP Request
      *
      * @return Response HTTP response
+     *
+     * @throws NonUniqueResultException
      */
     #[Route(
         name: 'notice_index',
@@ -62,23 +65,6 @@ class NoticeController extends AbstractController
         );
 
         return $this->render('notice/index.html.twig', ['pagination' => $pagination]);
-    }
-
-    /**
-     * Get filters from request.
-     *
-     * @param Request $request HTTP request
-     *
-     * @return array<string, int> Array of filters
-     *
-     * @psalm-return array{category_id: int, tag_id: int, status_id: int}
-     */
-    private function getFilters(Request $request): array
-    {
-        $filters = [];
-        $filters['category_id'] = $request->query->getInt('filters_category_id');
-
-        return $filters;
     }
 
     /**
@@ -106,7 +92,7 @@ class NoticeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'notice_create', methods: 'GET|POST',)]
+    #[Route('/create', name: 'notice_create', methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         $notice = new Notice();
@@ -135,7 +121,7 @@ class NoticeController extends AbstractController
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Notice $notice Notice entity
+     * @param Notice  $notice  Notice entity
      *
      * @return Response HTTP response
      */
@@ -176,7 +162,7 @@ class NoticeController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Notice $notice Notice entity
+     * @param Notice  $notice  Notice entity
      *
      * @return Response HTTP response
      */
@@ -212,35 +198,69 @@ class NoticeController extends AbstractController
             ]
         );
     }
+
+    /**
+     * Activate action.
+     *
+     * @param Notice $notice Notice entity
+     *
+     * @return Response HTTP response
+     */
     #[Route('/{id}/activate', name: 'notice_activate', methods: 'GET')]
     public function activate(Notice $notice): Response
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('message.noadmin');
         }
+
         $this->addFlash(
             'success',
             $this->translator->trans('message.notice.accepted')
         );
-        $notice->setIsActive(1);
-        $this->entityManager->flush();
+
+        $this->noticeService->activate($notice);
 
         return $this->redirectToRoute('notice_index');
     }
 
+    /**
+     * Action deactivate.
+     *
+     * @param Notice $notice Notice entity
+     *
+     * @return Response HTTP response
+     */
     #[Route('/{id}/deactivate', name: 'notice_deactivate', methods: 'GET')]
     public function deactivate(Notice $notice): Response
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('message.noadmin');
         }
+
         $this->addFlash(
             'warning',
             $this->translator->trans('message.notice.deactivated')
         );
-        $notice->setIsActive(0);
-        $this->entityManager->flush();
+
+        $this->noticeService->deactivate($notice);
 
         return $this->redirectToRoute('notice_index');
+    }
+
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{category_id: int, tag_id: int, status_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
+
+        return $filters;
     }
 }

@@ -69,18 +69,6 @@ class NoticeRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('notice');
-    }
-
-    /**
      * Count noticess by category.
      *
      * @param Category $category Category
@@ -122,6 +110,41 @@ class NoticeRepository extends ServiceEntityRepository
         $this->_em->remove($notice);
         $this->_em->flush();
     }
+
+    /**
+     * Activate notice.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function activate(Notice $notice): void
+    {
+        $notice->setIsActive(true);
+        $this->save($notice);
+    }
+
+    /**
+     * Deactivate notice.
+     *
+     * @param Notice $notice Notice entity
+     */
+    public function deactivate(Notice $notice): void
+    {
+        $notice->setIsActive(false);
+        $this->save($notice);
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('notice');
+    }
+
     /**
      * Apply filters to paginated list.
      *
@@ -136,7 +159,7 @@ class NoticeRepository extends ServiceEntityRepository
             $queryBuilder->andWhere('category = :category')
                 ->setParameter('category', $filters['category']);
         }
+
         return $queryBuilder;
     }
-
 }

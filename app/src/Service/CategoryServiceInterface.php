@@ -6,11 +6,10 @@
 namespace App\Service;
 
 use App\Entity\Category;
-use App\Repository\NoticeRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Interface TaskServiceInterface.
+ * Interface CategoryServiceInterface.
  */
 interface CategoryServiceInterface
 {
