@@ -7,6 +7,12 @@
 {% block body %}
     <h1>{{ 'title.notice_create'|trans }}</h1>
     {{ form_start(form) }}
+    {% if false == form.vars.valid %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'danger',
+            message: 'message.form_error'|trans,
+        }%}
+    {% endif %}
     <div class="form-field">
         {{ form_label(form.title) }}
         <br>

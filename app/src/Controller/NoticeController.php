@@ -209,10 +209,6 @@ class NoticeController extends AbstractController
     #[Route('/{id}/activate', name: 'notice_activate', methods: 'GET')]
     public function activate(Notice $notice): Response
     {
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('message.noadmin');
-        }
-
         $this->addFlash(
             'success',
             $this->translator->trans('message.notice.accepted')
@@ -233,10 +229,6 @@ class NoticeController extends AbstractController
     #[Route('/{id}/deactivate', name: 'notice_deactivate', methods: 'GET')]
     public function deactivate(Notice $notice): Response
     {
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('message.noadmin');
-        }
-
         $this->addFlash(
             'warning',
             $this->translator->trans('message.notice.deactivated')

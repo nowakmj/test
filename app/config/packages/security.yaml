@@ -44,6 +44,8 @@ security:
         - { path: ^/login, roles: PUBLIC_ACCESS}
         - { path: ^/notice/[0-9]+/edit, roles: ROLE_ADMIN }
         - { path: ^/notice/[0-9]+/delete, roles: ROLE_ADMIN }
+        - { path: ^/notice/[0-9]+/activate, roles: ROLE_ADMIN }
+        - { path: ^/notice/[0-9]+/deactivate, roles: ROLE_ADMIN }
         - { path: ^/category/[0-9]+/edit, roles: ROLE_ADMIN }
         - { path: ^/category/[0-9]+/delete, roles: ROLE_ADMIN }
         - { path: ^/category/create, roles: ROLE_ADMIN }
